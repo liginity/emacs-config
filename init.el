@@ -133,3 +133,5 @@
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist
              '("\\.\\(?:md\\|markdown\\)\\'" . markdown-mode))
+(setq markdown-header-scaling t
+      markdown-asymmetric-header t)
