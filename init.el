@@ -119,6 +119,7 @@
 (add-to-list 'load-path
 	     (file-name-concat user-emacs-directory "packs"))
 (require 'org-pack)
+(require 'temporary-pack nil t)
 
 (with-eval-after-load 'cc-mode
   (add-to-list 'c-default-style '(c++-mode . "stroustrup")))
