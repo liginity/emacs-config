@@ -117,7 +117,7 @@
 
 
 (add-to-list 'load-path
-	     (file-name-concat user-emacs-directory "site-lisp" "packs"))
+	     (file-name-concat user-emacs-directory "packs"))
 (require 'org-pack)
 
 (with-eval-after-load 'cc-mode
