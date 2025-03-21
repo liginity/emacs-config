@@ -5,5 +5,7 @@ recentf
 timelog
 
 # my specific files
+site-lisp/
+
 personal-file-list
 packs/temporary-pack.el
