@@ -1,0 +1,9 @@
+auto-save-list/
+eln-cache/
+
+recentf
+timelog
+
+# my specific files
+personal-file-list
+packs/temporary-pack.el
