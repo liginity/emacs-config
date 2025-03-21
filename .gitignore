@@ -4,6 +4,10 @@ eln-cache/
 recentf
 timelog
 
+*.elc
+#*#
+.#*
+
 # my specific files
 site-lisp/
 
