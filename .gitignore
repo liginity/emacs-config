@@ -1,6 +1,7 @@
 auto-save-list/
 eln-cache/
 
+custom.el
 recentf
 timelog
 
