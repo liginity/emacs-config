@@ -135,3 +135,5 @@
              '("\\.\\(?:md\\|markdown\\)\\'" . markdown-mode))
 (setq markdown-header-scaling t
       markdown-asymmetric-header t)
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "C-<return>") #'markdown-insert-header-dwim))
