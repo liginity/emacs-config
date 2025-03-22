@@ -139,5 +139,5 @@
   (define-key markdown-mode-map (kbd "C-<return>") #'markdown-insert-header-dwim))
 
 ;; emacs Custom
-(setq custom-file (expand-file-name user-emacs-directory "custom.el"))
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
