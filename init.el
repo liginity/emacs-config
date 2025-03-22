@@ -137,3 +137,7 @@
       markdown-asymmetric-header t)
 (with-eval-after-load 'markdown-mode
   (define-key markdown-mode-map (kbd "C-<return>") #'markdown-insert-header-dwim))
+
+;; emacs Custom
+(setq custom-file (expand-file-name user-emacs-directory "custom.el"))
+(load custom-file)
