@@ -30,6 +30,11 @@
 ;; NOTE remove the default key binding for `eval-last-sexp'.
 (define-key (current-global-map) (kbd "C-x C-e") nil)
 
+(setq enable-local-variables :safe)
+(setq enable-local-eval nil)
+(setq safe-local-variable-values nil)
+(setq safe-local-eval-forms nil)
+
 
 ;; set scratch buffer mode
 (setq initial-major-mode 'text-mode)
