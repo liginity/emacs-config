@@ -128,15 +128,25 @@
 ;; disable version control
 (setq vc-handled-backends nil)
 
+
 ;; markdown-mode
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist
              '("\\.\\(?:md\\|markdown\\)\\'" . markdown-mode))
+
+;; The code blocks for these langs would have lang-mode highlight.
+(setq markdown-code-lang-modes
+      '(("C" . c-mode) ("cpp" . c++-mode) ("C++" . c++-mode)
+	("python" . python-mode)))
+
 (setq markdown-header-scaling t
-      markdown-asymmetric-header t)
+      markdown-asymmetric-header t
+      markdown-fontify-code-blocks-natively t)
+
 (with-eval-after-load 'markdown-mode
   (define-key markdown-mode-map (kbd "C-<return>") #'markdown-insert-header-dwim))
+
 
 ;; emacs Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
