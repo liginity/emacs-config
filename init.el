@@ -55,8 +55,8 @@
 (blink-cursor-mode -1)
 
 ;; recentf-mode
-(recentf-mode 1)
 (setq recentf-max-saved-items 200)
+(recentf-mode 1)
 (defun personal-recentf-open-file (file)
   "Open recentf-mode files with `completing-read'."
   (interactive
