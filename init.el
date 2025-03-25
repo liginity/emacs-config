@@ -49,10 +49,6 @@
 (setq set-mark-command-repeat-pop t)
 
 
-;; ui
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
 
 ;; some modes
 (electric-pair-mode 1)
