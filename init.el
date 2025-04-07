@@ -109,6 +109,15 @@
 
 ;; (define-key (current-global-map) (kbd "C-a") #'personal-move-beginning-of-line)
 
+(defun personal-make-workspace-frame ()
+  "Make a new frame to use as a workspace."
+  (interactive)
+  (let ((tab-count 6)
+	(buffer (get-scratch-buffer-create)))
+    (with-current-buffer buffer
+      (with-selected-frame (make-frame)
+	(cl-dotimes (_ tab-count) (tab-new))))))
+
 
 ;; local verion org-mode
 (add-to-list 'load-path
