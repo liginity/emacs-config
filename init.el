@@ -160,4 +160,4 @@
 
 ;; emacs Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(load custom-file 'noerror 'nomessage)
