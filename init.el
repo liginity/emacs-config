@@ -18,8 +18,10 @@
 (progn
   (cl-dotimes (i 8)
     (tab-new))
+(tab-bar-select-tab 3)
+  (switch-to-buffer (get-buffer-create "*ai-chat*"))
   (tab-bar-select-tab 1))
-
+(global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
 
 ;; for manual page
 (global-set-key (kbd "C-h M") #'describe-mode)
@@ -53,6 +55,9 @@
 ;; some modes
 (electric-pair-mode 1)
 (blink-cursor-mode -1)
+
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
 
 ;; recentf-mode
 (setq recentf-max-saved-items 200)
@@ -132,7 +137,17 @@
 (require 'temporary-pack nil t)
 
 (with-eval-after-load 'cc-mode
-  (add-to-list 'c-default-style '(c++-mode . "stroustrup")))
+  (add-to-list 'c-default-style '(c++-mode . "stroustrup"))
+  (add-to-list 'c-default-style '(c-mode . "stroustrup")))
+
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "C-c c") markdown-mode-style-map)
+  (define-key markdown-mode-map (kbd "C-M-c") #'markdown-insert-code)
+  (define-key markdown-mode-map (kbd "C-s-c") #'markdown-insert-gfm-code-block)
+
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode nil))))
 
 ;; version control related
 ;; disable version control
