@@ -18,8 +18,10 @@
 (progn
   (cl-dotimes (i 8)
     (tab-new))
+(tab-bar-select-tab 3)
+  (switch-to-buffer (get-buffer-create "*ai-chat*"))
   (tab-bar-select-tab 1))
-
+(global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
 
 ;; for manual page
 (global-set-key (kbd "C-h M") #'describe-mode)
@@ -29,6 +31,11 @@
 
 ;; NOTE remove the default key binding for `eval-last-sexp'.
 (define-key (current-global-map) (kbd "C-x C-e") nil)
+
+(setq enable-local-variables :safe)
+(setq enable-local-eval nil)
+(setq safe-local-variable-values nil)
+(setq safe-local-eval-forms nil)
 
 
 ;; set scratch buffer mode
@@ -44,18 +51,17 @@
 (setq set-mark-command-repeat-pop t)
 
 
-;; ui
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-
 
 ;; some modes
 (electric-pair-mode 1)
 (blink-cursor-mode -1)
 
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+
 ;; recentf-mode
-(recentf-mode 1)
 (setq recentf-max-saved-items 200)
+(recentf-mode 1)
 (defun personal-recentf-open-file (file)
   "Open recentf-mode files with `completing-read'."
   (interactive
@@ -108,6 +114,15 @@
 
 ;; (define-key (current-global-map) (kbd "C-a") #'personal-move-beginning-of-line)
 
+(defun personal-make-workspace-frame ()
+  "Make a new frame to use as a workspace."
+  (interactive)
+  (let ((tab-count 6)
+	(buffer (get-scratch-buffer-create)))
+    (with-current-buffer buffer
+      (with-selected-frame (make-frame)
+	(cl-dotimes (_ tab-count) (tab-new))))))
+
 
 ;; local verion org-mode
 (add-to-list 'load-path
@@ -122,7 +137,17 @@
 (require 'temporary-pack nil t)
 
 (with-eval-after-load 'cc-mode
-  (add-to-list 'c-default-style '(c++-mode . "stroustrup")))
+  (add-to-list 'c-default-style '(c++-mode . "stroustrup"))
+  (add-to-list 'c-default-style '(c-mode . "stroustrup")))
+
+(with-eval-after-load 'markdown-mode
+  (define-key markdown-mode-map (kbd "C-c c") markdown-mode-style-map)
+  (define-key markdown-mode-map (kbd "C-M-c") #'markdown-insert-code)
+  (define-key markdown-mode-map (kbd "C-s-c") #'markdown-insert-gfm-code-block)
+
+  (add-hook 'markdown-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode nil))))
 
 ;; version control related
 ;; disable version control
@@ -150,4 +175,4 @@
 
 ;; emacs Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+(load custom-file 'noerror 'nomessage)
