@@ -8,17 +8,17 @@
 ;; define "M-1" as selecting tab 1.
 ;; and so on.
 (cl-loop for i from 1 to 9 do
-	 (define-key (current-global-map)
-	   (kbd (format "M-%d" i))
-	   `(lambda ()
-	      (interactive)
-	      (tab-bar-select-tab ,i))))
+         (define-key (current-global-map)
+                     (kbd (format "M-%d" i))
+                     `(lambda ()
+                        (interactive)
+                        (tab-bar-select-tab ,i))))
 
 ;; create tabs on startup.
 (progn
   (cl-dotimes (i 8)
     (tab-new))
-(tab-bar-select-tab 3)
+  (tab-bar-select-tab 3)
   (switch-to-buffer (get-buffer-create "*ai-chat*"))
   (tab-bar-select-tab 1))
 (global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
@@ -53,6 +53,8 @@
 
 
 ;; some modes
+(setq-default indent-tabs-mode nil)
+
 (electric-pair-mode 1)
 (blink-cursor-mode -1)
 
@@ -118,21 +120,21 @@
   "Make a new frame to use as a workspace."
   (interactive)
   (let ((tab-count 6)
-	(buffer (get-scratch-buffer-create)))
+        (buffer (get-scratch-buffer-create)))
     (with-current-buffer buffer
       (with-selected-frame (make-frame)
-	(cl-dotimes (_ tab-count) (tab-new))))))
+        (cl-dotimes (_ tab-count) (tab-new))))))
 
 
 ;; local verion org-mode
 (add-to-list 'load-path
-	     (file-name-concat user-emacs-directory "site-lisp" "org"))
+             (file-name-concat user-emacs-directory "site-lisp" "org"))
 (add-to-list 'load-path
-	     (file-name-concat user-emacs-directory "site-lisp" "markdown-mode"))
+             (file-name-concat user-emacs-directory "site-lisp" "markdown-mode"))
 
 
 (add-to-list 'load-path
-	     (file-name-concat user-emacs-directory "packs"))
+             (file-name-concat user-emacs-directory "packs"))
 (require 'org-pack)
 (require 'temporary-pack nil t)
 
@@ -163,7 +165,7 @@
 ;; The code blocks for these langs would have lang-mode highlight.
 (setq markdown-code-lang-modes
       '(("C" . c-mode) ("cpp" . c++-mode) ("C++" . c++-mode)
-	("python" . python-mode)))
+        ("python" . python-mode)))
 
 (setq markdown-header-scaling t
       markdown-asymmetric-header t
