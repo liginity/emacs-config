@@ -6,6 +6,7 @@
 
 
 
+;; security settings
 ;; NOTE remove the default key binding for `eval-last-sexp'.
 (define-key (current-global-map) (kbd "C-x C-e") nil)
 
@@ -14,10 +15,13 @@
 (setq safe-local-variable-values nil)
 (setq safe-local-eval-forms nil)
 
-
 ;; set scratch buffer mode
 (setq initial-major-mode 'text-mode)
+
+
+
 ;; some variables
+(setq Man-notify-method 'aggressive)
 (setq backup-inhibited t)
 
 (setq require-final-newline t)
@@ -25,7 +29,6 @@
 (setq sentence-end-double-space nil)
 (setq scroll-error-top-bottom t)
 (setq view-read-only t)
-(setq set-mark-command-repeat-pop t)
 
 ;; make emacs-pgtk work with wayland clipboard paste. from emacswiki.
 (setq select-active-regions nil)
@@ -34,15 +37,22 @@
 ;; some modes
 (setq-default indent-tabs-mode nil)
 
-(electric-pair-mode 1)
+(electric-pair-mode)
+
 (blink-cursor-mode -1)
 
 (setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
+(global-display-line-numbers-mode)
+
+(column-number-mode)
+
+;; disable version control
+(setq vc-handled-backends nil)
+(setq file-file-hook (delete #'vc-refresh-state find-file-hook))
 
 ;; recentf-mode
 (setq recentf-max-saved-items 200)
-(recentf-mode 1)
+(recentf-mode)
 
 (defun personal-check-personal-file-list()
   (when (not (boundp 'personal-file-list))
@@ -127,11 +137,6 @@
 (with-eval-after-load 'cc-mode
   (add-to-list 'c-default-style '(c++-mode . "stroustrup"))
   (add-to-list 'c-default-style '(c-mode . "stroustrup")))
-
-
-;; version control related
-;; disable version control
-(setq vc-handled-backends nil)
 
 
 ;; emacs Custom

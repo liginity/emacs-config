@@ -38,5 +38,13 @@
   (switch-to-buffer (get-buffer-create "*ai-chat*"))
   (tab-bar-select-tab 1))
 
+;; theme settings
+(setq modus-themes-headings
+      '((1 . (variable-pitch 2.0))
+        (2 . (variable-pitch 1.7))
+        (3 . (variable-pitch 1.4))
+        (4 . (variable-pitch 1.1))
+        (t . (bold))))
+
 (provide 'init-ui)
 ;;; init-ui.el ends here
