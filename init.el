@@ -5,14 +5,6 @@
 (require 'use-package)
 
 
-;; define "M-1" as selecting tab 1.
-;; and so on.
-(cl-loop for i from 1 to 9 do
-         (define-key (current-global-map)
-                     (kbd (format "M-%d" i))
-                     `(lambda ()
-                        (interactive)
-                        (tab-bar-select-tab ,i))))
 
 ;; create tabs on startup.
 (progn
@@ -23,9 +15,6 @@
   (tab-bar-select-tab 1))
 (global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
 
-;; for manual page
-(global-set-key (kbd "C-h M") #'describe-mode)
-(global-set-key (kbd "C-h m") #'man)
 
 (setq Man-notify-method 'aggressive)
 
@@ -134,7 +123,13 @@
 
 
 (add-to-list 'load-path
+             (file-name-concat user-emacs-directory "inits"))
+(add-to-list 'load-path
              (file-name-concat user-emacs-directory "packs"))
+
+;; init code
+(require 'init-keybindings)
+
 (require 'org-pack)
 (require 'temporary-pack nil t)
 
