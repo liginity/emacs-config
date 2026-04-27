@@ -27,6 +27,8 @@
 (setq view-read-only t)
 (setq set-mark-command-repeat-pop t)
 
+;; make emacs-pgtk work with wayland clipboard paste. from emacswiki.
+(setq select-active-regions nil)
 
 
 ;; some modes
