@@ -129,6 +129,7 @@
 
 ;; init code
 (require 'init-keybindings)
+(require 'init-writing)
 
 (require 'org-pack)
 (require 'temporary-pack nil t)
@@ -137,37 +138,10 @@
   (add-to-list 'c-default-style '(c++-mode . "stroustrup"))
   (add-to-list 'c-default-style '(c-mode . "stroustrup")))
 
-(with-eval-after-load 'markdown-mode
-  (define-key markdown-mode-map (kbd "C-c c") markdown-mode-style-map)
-  (define-key markdown-mode-map (kbd "C-M-c") #'markdown-insert-code)
-  (define-key markdown-mode-map (kbd "C-s-c") #'markdown-insert-gfm-code-block)
-
-  (add-hook 'markdown-mode-hook
-            (lambda ()
-              (setq indent-tabs-mode nil))))
 
 ;; version control related
 ;; disable version control
 (setq vc-handled-backends nil)
-
-
-;; markdown-mode
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist
-             '("\\.\\(?:md\\|markdown\\)\\'" . markdown-mode))
-
-;; The code blocks for these langs would have lang-mode highlight.
-(setq markdown-code-lang-modes
-      '(("C" . c-mode) ("cpp" . c++-mode) ("C++" . c++-mode)
-        ("python" . python-mode)))
-
-(setq markdown-header-scaling t
-      markdown-asymmetric-header t
-      markdown-fontify-code-blocks-natively t)
-
-(with-eval-after-load 'markdown-mode
-  (define-key markdown-mode-map (kbd "C-<return>") #'markdown-insert-header-dwim))
 
 
 ;; emacs Custom
