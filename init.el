@@ -129,6 +129,7 @@
 ;; init code
 (require 'init-ui)
 (require 'init-keybindings)
+(require 'init-help)
 (require 'init-writing)
 (require 'init-completion)
 
