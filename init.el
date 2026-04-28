@@ -43,15 +43,21 @@
 ;; recentf-mode
 (setq recentf-max-saved-items 200)
 (recentf-mode 1)
+
+(defun personal-check-personal-file-list()
+  (when (not (boundp 'personal-file-list))
+    (let ((file-path (expand-file-name "personal-file-list"
+                                       user-emacs-directory)))
+      (if (file-exists-p file-path)
+          (setq personal-file-list (load-file file-path))
+        (setq personal-file-list nil)))))
+
 (defun personal-recentf-open-file (file)
   "Open recentf-mode files with `completing-read'."
   (interactive
    (list (let (file-list)
-           (when (not (boundp 'personal-file-list))
-             (load-file (expand-file-name "personal-file-list"
-                                          user-emacs-directory)))
-           (setq file-list (copy-sequence personal-file-list))
-           (setcdr (last file-list) recentf-list)
+           (personal-check-personal-file-list)
+           (setq file-list (append personal-file-list recentf-list))
            (completing-read "Open file: " file-list))))
   (find-file file))
 
