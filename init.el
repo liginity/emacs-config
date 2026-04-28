@@ -110,7 +110,8 @@
         (buffer (get-scratch-buffer-create)))
     (with-current-buffer buffer
       (with-selected-frame (make-frame)
-        (cl-dotimes (_ tab-count) (tab-new))))))
+        (cl-dotimes (_ tab-count) (tab-new))
+        (tab-bar-select-tab 1)))))
 
 
 ;; local verion org-mode
