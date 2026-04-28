@@ -6,18 +6,6 @@
 
 
 
-;; create tabs on startup.
-(progn
-  (cl-dotimes (i 8)
-    (tab-new))
-  (tab-bar-select-tab 3)
-  (switch-to-buffer (get-buffer-create "*ai-chat*"))
-  (tab-bar-select-tab 1))
-(global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
-
-
-(setq Man-notify-method 'aggressive)
-
 ;; NOTE remove the default key binding for `eval-last-sexp'.
 (define-key (current-global-map) (kbd "C-x C-e") nil)
 
@@ -128,6 +116,7 @@
              (file-name-concat user-emacs-directory "packs"))
 
 ;; init code
+(require 'init-ui)
 (require 'init-keybindings)
 (require 'init-writing)
 

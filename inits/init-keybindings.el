@@ -36,5 +36,7 @@
 (global-set-key (kbd "C-h M") #'describe-mode)
 (global-set-key (kbd "C-h m") #'man)
 
+(global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
+
 (provide 'init-keybindings)
 ;;; init-keybindings.el ends here
