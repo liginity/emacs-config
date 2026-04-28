@@ -64,14 +64,6 @@
   (server-start))
 
 
-;; completion settings
-(fido-vertical-mode 1)
-(setq completion-cycle-threshold 3)
-
-(setq tab-always-indent 'complete)
-;; (setq completion-styles '())
-
-
 
 ;; custom commands
 (defun personal-backward-delete-word (arg)
@@ -119,6 +111,7 @@
 (require 'init-ui)
 (require 'init-keybindings)
 (require 'init-writing)
+(require 'init-completion)
 
 (require 'org-pack)
 (require 'temporary-pack nil t)
