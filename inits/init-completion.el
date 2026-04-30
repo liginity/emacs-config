@@ -22,13 +22,32 @@
 
 ;;; Code:
 
-(fido-vertical-mode)
+;; (fido-vertical-mode)
 
 (setq completion-cycle-threshold 3)
 (setq tab-always-indent 'complete)
 (setq completion-styles '(flex))
 (setq read-extended-command-predicate #'command-completion-default-include-p)
 
+(use-package vertico
+  :custom
+  ;; (vertico-scroll-margin 0) ;; Different scroll margin
+  (vertico-count 15) ;; Show more candidates
+  ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
+  ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :init
+  (vertico-mode))
+
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-quit-at-boundary t)
+  (corfu-auto-delay 0.1)
+  :hook ((prog-mode . (lambda ()
+                        (when (trusted-content-p)
+                          ;; only enable `corfu-auto' for trusted content.
+                          (setq-local corfu-auto t)
+                          (corfu-mode))))))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
