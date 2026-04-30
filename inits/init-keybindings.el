@@ -27,6 +27,13 @@
 (global-set-key (kbd "C-h M") #'describe-mode)
 (global-set-key (kbd "C-h m") #'man)
 
+(global-set-key (kbd "C-h p") #'describe-package)
+(global-set-key (kbd "C-h P") #'finder-by-keyword)
+
+;; "C-/" is `undo' by default.
+(global-set-key (kbd "C-/") #'comment-line)
+(global-set-key (kbd "C-z") #'undo)
+
 (global-set-key (kbd "C-<tab>") #'tab-bar-switch-to-recent-tab)
 
 (provide 'init-keybindings)
