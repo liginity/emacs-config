@@ -6,7 +6,7 @@
 (add-to-list 'emacs-startup-hook
              (lambda () (setq gc-cons-threshold (expt 2 24))))
 
-(setq package-enable-at-startup nil)
+(setq package-enable-at-startup t)
 
 ;; disable site-wide files.
 (setq site-run-file nil)

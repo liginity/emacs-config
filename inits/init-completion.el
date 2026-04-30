@@ -29,6 +29,16 @@
 (setq completion-styles '(flex))
 (setq read-extended-command-predicate #'command-completion-default-include-p)
 
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-quit-at-boundary t)
+  (corfu-auto-delay 0.1)
+  :hook ((prog-mode . (lambda ()
+                        (when (trusted-content-p)
+                          ;; only enable `corfu-auto' for trusted content.
+                          (setq-local corfu-auto t)
+                          (corfu-mode))))))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
