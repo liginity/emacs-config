@@ -27,6 +27,7 @@
 (setq completion-cycle-threshold 3)
 (setq tab-always-indent 'complete)
 (setq completion-styles '(flex))
+(setq read-extended-command-predicate #'command-completion-default-include-p)
 
 
 (provide 'init-completion)

@@ -23,15 +23,6 @@
 
 ;;; Code:
 
-;; define "M-1" as selecting tab 1.
-;; and so on.
-(cl-loop for i from 1 to 9 do
-         (define-key (current-global-map)
-                     (kbd (format "M-%d" i))
-                     `(lambda ()
-                        (interactive)
-                        (tab-bar-select-tab ,i))))
-
 ;; for manual page
 (global-set-key (kbd "C-h M") #'describe-mode)
 (global-set-key (kbd "C-h m") #'man)
